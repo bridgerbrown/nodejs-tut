@@ -15,6 +15,5 @@ const corsOptions = {
   },
   optionsSuccessStatus: 200
 };
-app.use(cors(corsOptions));
 
 module.exports = corsOptions;

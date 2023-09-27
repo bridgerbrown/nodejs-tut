@@ -20,12 +20,16 @@ app.use(express.urlencoded({ extended: false }));
 
 // built-in middleware for json
 app.use(express.json());
+app.use(cors(corsOptions));
 
 // built-in middleware for serving static files
 app.use('/', express.static(path.join(__dirname, '/public')));
-app.use('/employees', express.static(path.join(__dirname, './routes/api/employees')));
 
+// routes
 app.use('/', require('./routes/root'));
+app.use('/register', require('./routes/register'));
+app.use('/auth', require('./routes/auth'));
+app.use('/employees', express.static(path.join(__dirname, './routes/api/employees')));
 
 app.all('*', (req, res) => {
   // sending custom 404 file
